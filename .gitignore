@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+.env
+.production_env
+.DS_STORE
+/src/uploads
+.vscode
+.idea
+/build
+/uploads
+*.zip
+yarn.lock
+.DS_Store
+.env.uat
+.env.staging
+.env.prod
+.env.stg

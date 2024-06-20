@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "es6",
+    "noImplicitAny": false,
+    "outDir": "./build",
+    "sourceMap": true,
+    "removeComments": true,
+    "rootDir": "./src",
+    "sourceRoot": "./src",
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,    
+    "paths": {
+      "@app/*": ["./*"],
+      "@services/*": ["./services/*"],
+      "@controllers/*": ["./controllers/*"],
+      "@model/*": ["./model/*"],
+      "@middleware/*": ["./middleware/*"],
+      "@utility/*": ["./utility/*"]
+    },
+    "typeRoots": ["node_modules/@types"],
+    "lib":[
+      "es2021",
+      "DOM"
+    ],
+  },
+}

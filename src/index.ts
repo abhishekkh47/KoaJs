@@ -17,6 +17,7 @@ import {
 } from "@app/middleware";
 import Api from "@app/controllers";
 import views from "koa-views";
+import { mongodb } from "@app/db";
 
 const server = (async () => {
   try {
@@ -46,7 +47,7 @@ const server = (async () => {
     // handle maintenance mode
     app.use(maintenanceModeHandler);
     // Mongodb
-    // await mongoose.connect(Config.DB_PATH);
+    await mongodb();
 
     app.use(Mount("/api", Api));
 

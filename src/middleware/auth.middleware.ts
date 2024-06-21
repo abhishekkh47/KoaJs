@@ -6,7 +6,7 @@ export function adminAuthMiddleware() {
 
     descriptor.value = async function (...args: any[]) {
       const ctx = args[0];
-      if (ctx.query.key !== config.ADMIN_KEY) {
+      if (ctx.query.key !== config.ADMIN_SECRET) {
         ctx.status = 503;
         ctx.body = "You are not authorised";
       } else {

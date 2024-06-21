@@ -14,19 +14,17 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,    
+    "skipLibCheck": true,
     "paths": {
       "@app/*": ["./*"],
       "@services/*": ["./services/*"],
       "@controllers/*": ["./controllers/*"],
       "@model/*": ["./model/*"],
       "@middleware/*": ["./middleware/*"],
-      "@utility/*": ["./utility/*"]
+      "@utility/*": ["./utility/*"],
+      "@db/*": ["./db/*"]
     },
     "typeRoots": ["node_modules/@types"],
-    "lib":[
-      "es2021",
-      "DOM"
-    ],
-  },
+    "lib": ["es2021", "DOM"]
+  }
 }

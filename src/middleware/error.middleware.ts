@@ -12,7 +12,7 @@ export const errorHandler = async (ctx: Koa.Context | any, next: Koa.Next) => {
     const messages = e.messages || [];
 
     if (status === 500) {
-      logger.error("error", e);
+      logger.error(e);
     }
 
     ctx.status = status;

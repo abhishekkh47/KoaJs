@@ -60,9 +60,9 @@ const server = (async () => {
 
     appServer.listen(port);
 
-    logger.log("info", `Server running on port ${port}`);
+    logger.info(`Server running on port ${port}`);
   } catch (e) {
-    logger.log("error", `Server startup failed: ${e.message}`);
+    logger.error(`Server startup failed: ${e.message}`);
   }
 
   process.on("uncaughtException", function (error: any) {

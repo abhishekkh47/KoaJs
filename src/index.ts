@@ -10,7 +10,11 @@ DotEnv.config();
 
 import Config from "@app/config";
 import { logger } from "@app/utility";
-import { errorHandler, notFoundHandler } from "@app/middleware";
+import {
+  errorHandler,
+  notFoundHandler,
+  maintenanceModeHandler,
+} from "@app/middleware";
 import Api from "@app/controllers";
 import views from "koa-views";
 
@@ -18,6 +22,7 @@ const server = (async () => {
   try {
     const app = new Koa();
     const appServer = http.createServer(app.callback());
+    // app statistics and monitoring
     app.use(monitor(appServer, { path: "/status" }));
 
     const render = views(__dirname + "/views", { extension: "pug" });
@@ -25,6 +30,10 @@ const server = (async () => {
     app.use(render);
     // Enable cors
     app.use(cors());
+    app.use(async (ctx, next) => {
+      console.log(ctx.path, "path");
+      await next();
+    });
     // app.use(bodyparser());
     app.use(
       bodyParser({
@@ -34,6 +43,8 @@ const server = (async () => {
 
     // Handle exception
     app.use(errorHandler);
+    // handle maintenance mode
+    app.use(maintenanceModeHandler);
     // Mongodb
     // await mongoose.connect(Config.DB_PATH);
 

@@ -14,6 +14,7 @@ import {
   errorHandler,
   notFoundHandler,
   maintenanceModeHandler,
+  rateLimiterMiddleware,
 } from "@app/middleware";
 import Api from "@app/controllers";
 import views from "koa-views";
@@ -46,6 +47,7 @@ const server = (async () => {
     app.use(errorHandler);
     // handle maintenance mode
     app.use(maintenanceModeHandler);
+    app.use(rateLimiterMiddleware);
     // Mongodb
     await mongodb();
 

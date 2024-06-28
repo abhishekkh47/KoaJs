@@ -18,13 +18,15 @@ import {
 } from "@app/middleware";
 import Api from "@app/controllers";
 import views from "koa-views";
-import { mongodb } from "@app/db";
+import { mongodb, mysql, pool } from "@app/db";
+import helmet from "koa-helmet";
 
 const server = (async () => {
   try {
     const app = new Koa();
     const appServer = http.createServer(app.callback());
     // app statistics and monitoring
+    app.use(helmet());
     app.use(monitor(appServer, { path: "/status" }));
 
     const render = views(__dirname + "/views", { extension: "pug" });
@@ -48,8 +50,16 @@ const server = (async () => {
     app.use(errorHandler);
     // handle maintenance mode
     app.use(maintenanceModeHandler);
-    // Mongodb
-    await mongodb();
+
+    if (Config.DB_TYPE === "mongodb") {
+      await mongodb();
+    } else if (Config.DB_TYPE === "sql") {
+      await mysql();
+    } else if (Config.DB_TYPE === "postgres") {
+      await pool();
+    } else {
+      console.log("Please specify the Database to be used");
+    }
 
     app.use(Mount("/api", Api));
 

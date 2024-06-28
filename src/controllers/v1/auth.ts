@@ -4,7 +4,9 @@ import { HttpMethod } from "@app/types";
 import { Route, getJwtToken } from "@app/utility";
 import BaseController from "@app/controllers/base";
 import { auth } from "@app/middleware/auth.middleware";
-import { findUserByUsername, createUser } from "@app/models";
+import { findUserByUsername, createUser } from "@app/models/user";
+import { loadModels } from "@app/models";
+const { UserTable } = loadModels();
 
 class AuthController extends BaseController {
   @Route({ path: "/signup", method: HttpMethod.POST })

@@ -19,7 +19,7 @@
       "@app/*": ["./*"],
       "@services/*": ["./services/*"],
       "@controllers/*": ["./controllers/*"],
-      "@model/*": ["./model/*"],
+      "@models/*": ["./models/*"],
       "@middleware/*": ["./middleware/*"],
       "@utility/*": ["./utility/*"],
       "@db/*": ["./db/*"]

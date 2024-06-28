@@ -14,4 +14,7 @@ export default {
   get JWT_EXPIRE() {
     return process.env.JWT_EXPIRE;
   },
+  get DB_TYPE() {
+    return process.env.DB_TYPE;
+  },
 };

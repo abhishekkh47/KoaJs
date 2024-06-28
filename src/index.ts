@@ -43,11 +43,11 @@ const server = (async () => {
       })
     );
 
+    app.use(rateLimiterMiddleware);
     // Handle exception
     app.use(errorHandler);
     // handle maintenance mode
     app.use(maintenanceModeHandler);
-    app.use(rateLimiterMiddleware);
     // Mongodb
     await mongodb();
 

@@ -34,7 +34,6 @@ export const auth = () => {
         if (response && response.status && response.status === 401) {
           return this.UnAuthorized(ctx, "Invalid JWT Token");
         }
-        console.log("ctx.request.user : ", ctx.request.user);
         ctx.request.user = response;
       } catch (err) {
         return this.UnAuthorized(ctx, "Invalid JWT Token");

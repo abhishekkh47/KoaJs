@@ -11,7 +11,7 @@ export const rateLimiterMiddleware: Koa.Middleware = async (ctx, next) => {
     await rateLimiter.consume(ctx.ip); // Consume 1 point for each request from this IP
 
     await next();
-  } catch (rejRes) {
+  } catch (error) {
     ctx.status = 429; // Too Many Requests
     ctx.body = "Rate limit exceeded";
   }

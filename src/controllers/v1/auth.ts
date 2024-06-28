@@ -8,7 +8,6 @@ import { findUserByUsername, createUser } from "@app/models";
 
 class AuthController extends BaseController {
   @Route({ path: "/signup", method: HttpMethod.POST })
-  @auth()
   public async userSignup(ctx: Koa.Context | any) {
     const { email, username, password } = ctx.request.body;
     if (!username || !password) {
@@ -30,8 +29,7 @@ class AuthController extends BaseController {
       ctx.status = 500;
       ctx.body = "Internal Server Error";
     }
-
-    return this.Ok(ctx, { message: "service is up and running" });
+    return this.Ok(ctx, { message: ctx.body });
   }
 
   @Route({ path: "/login", method: HttpMethod.GET })

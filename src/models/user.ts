@@ -21,6 +21,7 @@ export const createUser = async (
     username,
     password: hashedPassword,
   };
+  console.log("newUSer : ", newUser);
   users.push(newUser);
   return newUser;
 };

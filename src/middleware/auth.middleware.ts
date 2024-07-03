@@ -18,7 +18,7 @@ export function adminAuthMiddleware() {
   };
 }
 
-export const auth = () => {
+export const Auth = () => {
   return (_: Object, __?: string, descriptor?: PropertyDescriptor) => {
     const fn: Function = descriptor.value;
     descriptor.value = async function (ctx: any) {

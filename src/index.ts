@@ -51,7 +51,7 @@ const server = (async () => {
     // handle maintenance mode
     app.use(maintenanceModeHandler);
 
-    if (Config.DB_TYPE === "mongodb") {
+    if (Config.DB_TYPE === "mongo") {
       await mongodb();
     } else if (Config.DB_TYPE === "sql") {
       await mysql();

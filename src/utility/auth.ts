@@ -1,9 +1,10 @@
 import Jwt from "jsonwebtoken";
 import config from "@app/config";
+import { IUserSchema } from "@app/models/mongo";
 
 export const getJwtToken = (body: any, expireTime: any = null) => {
   return Jwt.sign(body, config.JWT_SECRET ?? "secret", {
-    expiresIn: expireTime ? expireTime : 36000,
+    expiresIn: expireTime ? expireTime : config.JWT_EXPIRE,
   });
 };
 
@@ -21,10 +22,21 @@ export const verifyToken = (token: string) => {
 
 export const getRefreshToken = (body: any) => {
   return Jwt.sign(body, config.JWT_SECRET ?? "secret", {
-    expiresIn: config.JWT_EXPIRE,
+    expiresIn: "365d",
   });
 };
 
 export const decodeJwtToken = (body: any) => {
   return Jwt.decode(body);
+};
+
+export const getJwtAuthInfo = (user: IUserSchema) => {
+  const expiredOn = Date.now() + 36000;
+
+  return {
+    _id: user._id,
+    issuedOn: Date.now(),
+    expiredOn,
+    email: user.email,
+  };
 };

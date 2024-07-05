@@ -31,12 +31,16 @@ export const decodeJwtToken = (body: any) => {
 };
 
 export const getJwtAuthInfo = (user: IUserSchema) => {
-  const expiredOn = Date.now() + 36000;
+  try {
+    const expiredOn = Date.now() + 36000;
 
-  return {
-    _id: user._id,
-    issuedOn: Date.now(),
-    expiredOn,
-    email: user.email,
-  };
+    return {
+      _id: user._id,
+      issuedOn: Date.now(),
+      expiredOn,
+      email: user.email,
+    };
+  } catch (error) {
+    console.log("getJwtAuthInfo error : ", error);
+  }
 };

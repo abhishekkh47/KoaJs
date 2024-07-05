@@ -6,6 +6,7 @@ import bodyParser from "koa-bodyparser";
 import Mount from "koa-mount";
 import DotEnv from "dotenv";
 import monitor from "koa-monitor";
+import helmet from "koa-helmet";
 DotEnv.config();
 
 import Config from "@app/config";
@@ -19,7 +20,6 @@ import {
 import Api from "@app/controllers";
 import views from "koa-views";
 import { mongodb, mysql, pool } from "@app/db";
-import helmet from "koa-helmet";
 
 const server = (async () => {
   try {

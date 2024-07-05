@@ -1,13 +1,13 @@
 import Config from "@app/config";
+import * as MongoModels from "./mongo";
+import * as SqlModels from "./sql";
 
 export function loadModels() {
-  let models;
   if (Config.DB_TYPE === "mongo") {
-    models = require("@models/mongo");
+    return MongoModels;
   } else if (Config.DB_TYPE === "sql") {
-    models = require("@models/sql");
+    return SqlModels;
   } else {
     throw new Error("Unsupported DB_TYPE");
   }
-  return models;
 }

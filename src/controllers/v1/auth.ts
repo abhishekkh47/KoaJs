@@ -4,10 +4,9 @@ import { HttpMethod } from "@app/types";
 import { Route, decodeJwtToken } from "@app/utility";
 import BaseController from "@app/controllers/base";
 import { Auth } from "@app/middleware/auth.middleware";
-import { loadModels } from "@app/models";
 import { TokenService } from "@app/services/v1";
 import { UserService } from "@app/services/v1";
-const { UserTable } = loadModels();
+import { UserTable } from "@app/models/mongo";
 
 class AuthController extends BaseController {
   /**

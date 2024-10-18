@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "sapient-poet-412341",
+  "private_key_id": "sample_private_key_afe0149e7b3be23a5",
+  "private_key": "-----BEGIN PRIVATE KEY SAMPLE-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCkiMcoUe5JSrsA\nRR35gI77trQVohMDaUL+UCgol2hau5kZbNDChtksaJIxi+iOQt4hEnAEUCsHr1uo\neXRz/bS3RC6qTk2n0ZzldbWG8rmTF32zMbil8S7F/E5rTX96h7YG9Zppc1ekeNFS\ncEqmdDEN0ynJ3ep+ug9XTXH31hOv5fC+IwgQbMjQMcQGdL15Bwpn82tF78L+NmqW\nPuztng8yCBTA6csJwPyn5cOvIxVq6la3xcDnR/2lMBphIH8cc2EHb+OsTG5+VTUh\nu0oLKLyL4NMo2FAUsJ7f9HMu/hLnDkGTpHbCTu9EDgLcc01CjsZQMa0Y9oBMsJYs\ncPkCBzGrAgMBAAECggEAID45oRolMzG04cGptRpPat6L/e1MApAfM80rgYDiT12S\nDBx58JUSfBRmCdWcFjzeYObHEuFO/WuM78AVZSGjx4JSDsfXifqW35SopTBt03h4\nBqTIxaQ1AVGHYJnIUI/FySlaQC39T9rpUll1F5ePgWEPQGL/sCPwG7Cuk93c78w0\nZwLC7XFuK0I5uSSYG54yRzFCjLaoDxSMFlSKkrS5S1RzDBrSEhsTaiiuNIqa3CDp\nokOvl7oU/03gwQm2Dmpt4tIRsJYbzGVKt+klma0gpE4NN1YyDaauBTQQQ4vhB+Pb\nB+eaOWvp/607y2gQPt6J1UlF3lsXHjtcViSuSTO6kQKBgQDPVNxGdWmIaFocuwmY\n+tYoNchWmrKqKPAO5OR9srwpQTSBuDcRu7Q7on9kXTrBNwJJrCV7PmlJQyojzCdw\n0FsMKKxTHn0eBb/D0WGPCgBAvHnLLHuWT8epGGJA4YbeU7dkMZhWLeb1w00bxOYD\nsSq3GelkVxqJgFberXVJYEVVowKBgQDLKBytybqGDtBHVGHPE10d96dytqf7hFCP\ngE4ykaAE/s38Tyn/6L9IqSXcnVaCwHBbmRWe6Vwb3hbJGK5daLB0Vua3Y+89SQ/E\n+AKNmcA/WDqcKQYg9y+6mciBNJEB1KRn5wcpT1Xd9rFTWwIU/GVNG4zPl3t/pu01=\n-----END PRIVATE KEY-----\n",
+  "client_email": "abhishek@sapient-poet-412346.iam.gserviceaccount.com",
+  "client_id": "1123688774564051892376",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/abhishek%40sapient-poet-412346.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

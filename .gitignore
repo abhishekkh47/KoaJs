@@ -3,3 +3,5 @@
 src/.DS_Store
 .env
 .DS_Store
+firestore.config.local.json
+firestore.admin.config.json

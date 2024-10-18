@@ -1,7 +1,11 @@
-import { Firestore } from "@google-cloud/firestore";
+import admin from "firebase-admin";
+const serviceAccount = require("/Volumes/Data/Projects/node-koa/firestore.admin.config.json");
+try {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+} catch (error) {
+  console.log("ERROR : ", error);
+}
 
-// Initialize Firestore
-export const firestore = new Firestore({
-  projectId: process.env.GCP_PROJECT_ID,
-  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-});
+export const firestore = admin.firestore();

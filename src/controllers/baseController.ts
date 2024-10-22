@@ -1,11 +1,11 @@
 import { Response } from "express";
 
-export class BaseController {
-  protected success(res: Response, data: any, status: number = 200) {
-    return res.status(status).json(data);
+export abstract class BaseController {
+  public successResponse(res: Response, message: string, data: any = {}) {
+    return res.status(200).json({ message, data });
   }
 
-  protected error(res: Response, message: any, status: number = 404) {
-    return res.status(status).json({ error: message });
+  public errorResponse(res: Response, message: string, code: number = 500) {
+    return res.status(code).json({ error: message });
   }
 }

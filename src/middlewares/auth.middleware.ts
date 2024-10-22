@@ -1,34 +1,26 @@
-import { verifyToken } from "@app/utility";
 import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
-export const Auth = () => {
-  return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
-    const originalMethod = descriptor.value;
+export const authMiddleware = (
+  req: any,
+  res: Response,
+  next: NextFunction
+): void => {
+  const token = req.headers["authorization"]?.split(" ")[1]; // Assuming "Bearer <token>"
 
-    descriptor.value = async function (
-      req: Request,
-      res: Response,
-      next: NextFunction
-    ) {
-      const token =
-        (req.headers["x-access-token"] as string) ||
-        (req.query.token as string);
+  if (!token) {
+    res
+      .status(401)
+      .json({ message: "No token provided, authorization denied" });
+    return; // Return here to prevent further execution
+  }
 
-      if (!token) {
-        return res.status(401).json({ message: "No token provided" });
-      }
-
-      try {
-        const decoded = await verifyToken(token);
-
-        // Now TypeScript recognizes req.user
-        req.user = decoded; // Attach user info to the request object
-        return originalMethod.apply(this, [req, res, next]); // Call the original method
-      } catch (error) {
-        return res.status(401).json({ message: "Invalid or expired token" });
-      }
-    };
-
-    return descriptor;
-  };
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+    // Attach the decoded user info to the request object
+    req.user = decoded; // Make sure to have user defined in Request type
+    next(); // Call the next middleware
+  } catch (error) {
+    res.status(401).json({ message: "Invalid token" });
+  }
 };

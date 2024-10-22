@@ -1,48 +1,34 @@
 import { firestore } from "../config";
 import { User } from "../models/user";
 
-const userCollection = firestore.collection("users");
-
 export class UserService {
-  // Get all users
-  static async getAllUsers(): Promise<User[] | any> {
-    try {
-      const snapshot = await userCollection.get();
-      const users: User[] = [];
-      snapshot.forEach((doc) =>
-        users.push({ id: doc.id, ...doc.data() } as User)
-      );
-      return users;
-    } catch (error) {
-      console.log("error : ", error);
+  private userCollection = firestore.collection("users");
+
+  public async getAllUsers() {
+    console.log("here");
+    const usersSnapshot = await this.userCollection.get();
+    console.log("usersSnapshot : ", usersSnapshot);
+    return usersSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  }
+
+  public async getUserById(id: string) {
+    console.log("here1");
+    const userDoc = await this.userCollection.doc(id).get();
+    console.log("userDoc : ", userDoc);
+    if (!userDoc.exists) {
+      throw new Error("User not found");
     }
+    return { id: userDoc.id, ...userDoc.data() };
   }
 
-  // Create a new user
-  static async createUser(user: User): Promise<User> {
-    const userRef = await userCollection.add(user);
-    const newUser = { id: userRef.id, ...user };
-    return newUser;
+  public async updateUser(id: string, data: Partial<User>) {
+    const userDoc = this.userCollection.doc(id);
+    await userDoc.update(data);
+    const updatedUser = await userDoc.get();
+    return { id: updatedUser.id, ...updatedUser.data() };
   }
 
-  // Get user by ID
-  static async getUserById(id: string): Promise<User | null | any> {
-    try {
-      const userDoc = await userCollection.doc(id).get();
-      if (!userDoc.exists) return null;
-      return { id: userDoc.id, ...userDoc.data() } as User;
-    } catch (err) {
-      console.log("error here: ", err);
-    }
-  }
-
-  // Update user by ID
-  static async updateUser(id: string, user: Partial<User>): Promise<void> {
-    await userCollection.doc(id).update(user);
-  }
-
-  // Delete user by ID
-  static async deleteUser(id: string): Promise<void> {
-    await userCollection.doc(id).delete();
+  public async deleteUser(id: string) {
+    await this.userCollection.doc(id).delete();
   }
 }

@@ -1,62 +1,50 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/user.service";
 import { BaseController } from "./baseController";
-import { Auth } from "../middlewares/auth.middleware";
 
-class UserController extends BaseController {
-  @Auth()
-  async createUser(req: Request, res: Response) {
+export class UserController extends BaseController {
+  private userService = new UserService();
+
+  public async getAllUsers(req: Request, res: Response) {
     try {
-      const user = await UserService.createUser(req.body);
-      this.success(res, user);
+      const users = await this.userService.getAllUsers();
+      return this.successResponse(res, "Users fetched successfully", users);
     } catch (error: any) {
-      this.error(res, error.message);
+      return this.errorResponse(res, error.message, 500);
     }
   }
 
-  @Auth()
-  async getUserById(req: Request, res: Response) {
+  public async getUserById(req: Request, res: Response) {
     try {
-      const user = await UserService.getUserById(req.params.id);
-      if (user) {
-        this.success(res, user);
-      } else {
-        this.error(res, "User not found", 404);
-      }
+      const user = await this.userService.getUserById(req.params.id);
+      return this.successResponse(res, "User fetched successfully", user);
     } catch (error: any) {
-      this.error(res, error.message);
+      return this.errorResponse(res, error.message, 404);
     }
   }
 
-  @Auth()
-  async updateUser(req: Request, res: Response) {
+  public async updateUser(req: Request, res: Response) {
     try {
-      const user = await UserService.updateUser(req.params.id, req.body);
-      this.success(res, user);
+      const updatedUser = await this.userService.updateUser(
+        req.params.id,
+        req.body
+      );
+      return this.successResponse(
+        res,
+        "User updated successfully",
+        updatedUser
+      );
     } catch (error: any) {
-      this.error(res, error.message);
+      return this.errorResponse(res, error.message, 400);
     }
   }
 
-  @Auth()
-  async deleteUser(req: Request, res: Response) {
+  public async deleteUser(req: Request, res: Response) {
     try {
-      await UserService.deleteUser(req.params.id);
-      this.success(res, { message: "User deleted" });
+      await this.userService.deleteUser(req.params.id);
+      return this.successResponse(res, "User deleted successfully");
     } catch (error: any) {
-      this.error(res, error.message);
-    }
-  }
-
-  @Auth()
-  async getAllUsers(req: Request, res: Response) {
-    try {
-      const users = await UserService.getAllUsers();
-      this.success(res, users);
-    } catch (error: any) {
-      this.error(res, error.message);
+      return this.errorResponse(res, error.message, 400);
     }
   }
 }
-
-export default new UserController();

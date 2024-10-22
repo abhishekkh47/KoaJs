@@ -9,7 +9,7 @@
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,
+    // "experimentalDecorators": true,
     "paths": {
       "@app/*": ["./*"],
       "@services/*": ["./services/*"],
@@ -19,10 +19,10 @@
       "@utility/*": ["./utility/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/@types/**/*"],
+  "include": ["src/**/*.ts", "src/types/**/*", "src/types/**/*.d.ts"],
   "typeRoots": [
     "./node_modules/@types",
-    "./src/@types" // Add your custom types directory
+    "./src/types" // Add your custom types directory
   ],
   "exclude": ["node_modules"]
 }

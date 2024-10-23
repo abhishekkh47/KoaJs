@@ -16,37 +16,31 @@ router.get(
   "/",
   authMiddleware,
   asyncHandler(async (req, res) => {
-    const users = await userController.getAllUsers(req, res);
-    res.json(users); // Send the response here
+    await userController.getAllUsers(req, res);
   })
 );
+
 router.get(
   "/:id",
   authMiddleware,
   asyncHandler(async (req, res) => {
-    const users = await userController.getUserById(req, res);
-    res.json(users); // Send the response here
+    await userController.getUserById(req, res);
   })
 );
-// router.post(
-//   "/",
-//   authMiddleware,
-//   asyncHandler(userController.createUser.bind(userController))
-// );
+
 router.put(
   "/:id",
   authMiddleware,
   asyncHandler(async (req, res) => {
-    const users = await userController.updateUser(req, res);
-    res.json(users); // Send the response here
+    await userController.updateUser(req, res);
   })
 );
+
 router.delete(
   "/:id",
   authMiddleware,
   asyncHandler(async (req, res) => {
-    const users = await userController.deleteUser(req, res);
-    res.json(users); // Send the response here
+    await userController.deleteUser(req, res);
   })
 );
 

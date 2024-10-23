@@ -8,23 +8,8 @@ export const userTypeDefs = gql`
     password: String!
   }
 
-  type AuthPayload {
-    token: String!
-    user: User!
-  }
-
-  type UserInput {
-    name: String!
-    email: String!
-    password: String!
-  }
-
   type Query {
     users: [User!]!
-  }
-
-  type Mutation {
-    signup(input: UserInput!): AuthPayload!
-    login(email: String!, password: String!): AuthPayload!
+    userNames: [String!]!
   }
 `;

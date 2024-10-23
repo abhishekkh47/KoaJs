@@ -1,4 +1,3 @@
-// src/controllers/auth.controller.ts
 import { Request, Response } from "express";
 import { BaseController } from "./base.controller";
 import { UserTable } from "../models";
@@ -7,11 +6,11 @@ import jwt from "jsonwebtoken";
 
 class AuthController extends BaseController {
   async signup(req: Request, res: Response): Promise<Response> {
-    const { username, password } = req.body;
+    const { name, email, password } = req.body;
 
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = new UserTable({ username, password: hashedPassword });
+      const user = new UserTable({ name, email, password: hashedPassword });
       await user.save();
 
       return this.successResponse(res, {
@@ -23,10 +22,10 @@ class AuthController extends BaseController {
   }
 
   async login(req: Request, res: Response): Promise<Response> {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-      const user = await UserTable.findOne({ username });
+      const user = await UserTable.findOne({ email });
       if (!user)
         return this.errorResponse(res, { message: "User not found" }, 404);
 

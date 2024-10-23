@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src",
+      "target": "ES6",
+      "module": "commonjs",
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "esModuleInterop": true,
+      "strict": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      // "experimentalDecorators": true,
+      "paths": {
+        "@app/*": ["./*"],
+        "@services/*": ["./services/*"],
+        "@controllers/*": ["./controllers/*"],
+        "@model/*": ["./model/*"],
+        "@middleware/*": ["./middleware/*"],
+        "@utility/*": ["./utility/*"]
+      }
+    },
+    "include": ["src/**/*.ts", "src/types/**/*", "src/types/**/*.d.ts"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types" // Add your custom types directory
+    ],
+    "exclude": ["node_modules"]
+  }
+  

@@ -1,4 +1,4 @@
-import { UserTable } from "../../models";
+import { UserTable } from "@app/models/user.model";
 
 export const userResolvers = {
   Query: {

@@ -1,7 +1,7 @@
 // src/controllers/user.controller.ts
 import { Request, Response } from "express";
 import { BaseController } from "./base.controller";
-import { UserTable } from "../models";
+import { UserTable } from "@app/models";
 
 class UserController extends BaseController {
   async getAllUsers(req: Request, res: Response): Promise<Response> {

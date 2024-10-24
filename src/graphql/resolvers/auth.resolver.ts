@@ -24,7 +24,6 @@ export const authResolvers = {
       }
     },
     login: async (_: any, { email, password }: any) => {
-      console.log("HERE");
       try {
         const user: any = await UserTable.findOne({ email }); // Use findOne instead of find
         if (!user) {

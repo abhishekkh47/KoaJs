@@ -27,10 +27,15 @@ app.use("/auth", authRoutes);
 
 app.use(
   "/graphql",
-  // authMiddleware,
-  graphqlHTTP({
-    schema,
-    graphiql: true,
+  authMiddleware,
+  graphqlHTTP((req: any, res: any) => {
+    return {
+      schema,
+      graphiql: true,
+      context: {
+        user: req.user, // Pass the user information to the context
+      },
+    };
   })
 );
 // User routes

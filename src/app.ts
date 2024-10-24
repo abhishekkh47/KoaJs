@@ -6,7 +6,7 @@ import schema from "./graphql/schema";
 import {
   errorHandlerMiddleware,
   loggingMiddleware,
-  authMiddleware,
+  applyAuthConditionally,
 } from "./middlewares";
 import cors from "cors";
 import { authRoutes, userRoutes } from "./routes";
@@ -27,7 +27,7 @@ app.use("/auth", authRoutes);
 
 app.use(
   "/graphql",
-  authMiddleware,
+  applyAuthConditionally,
   graphqlHTTP((req: any, res: any) => {
     return {
       schema,

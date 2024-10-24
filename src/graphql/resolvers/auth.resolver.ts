@@ -19,7 +19,6 @@ export const authResolvers = {
         const token = signJWT(user);
         return { token, user };
       } catch (error) {
-        console.error("Error during signup: ", error);
         throw new Error("Signup failed");
       }
     },
@@ -38,7 +37,6 @@ export const authResolvers = {
         const token = signJWT(user);
         return { token, user }; // Ensure you're returning a valid response
       } catch (error) {
-        console.error("Error during login: ", error);
         throw new Error("Login failed"); // Throw an error to be caught in GraphQL
       }
     },

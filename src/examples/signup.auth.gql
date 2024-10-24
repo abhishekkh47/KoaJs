@@ -1,0 +1,14 @@
+mutation UserSignup{
+  signup(input: {
+    name: "John Doe",
+    email: "john.doe@example.com",
+    password: "yourSecurePassword"
+  }) {
+    token
+    user {
+      _id
+      name
+      email
+    }
+  }
+}

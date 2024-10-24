@@ -1,0 +1,9 @@
+mutation UserLogin {
+  login(email: "john.doe@example.com", password: "yourSecurePassword") {
+    token
+    user {
+      _id
+      name
+    }
+  }
+}

@@ -1,0 +1,8 @@
+# include 'authorization' header containing Bearer token
+{
+  users {
+    _id
+    name
+    email
+  }
+}

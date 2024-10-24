@@ -1,0 +1,8 @@
+# include 'authorization' header containing Bearer token
+query {
+  getUserById(userId: "6718c39eb2593b54bd872d38") {
+    _id
+    name
+    email
+  }
+}

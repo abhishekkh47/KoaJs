@@ -8,8 +8,13 @@ export const userTypeDefs = gql`
     password: String!
   }
 
+  input GetUserById {
+    userId: ID!
+  }
+
   type Query {
     users: [User!]!
     userNames: [String!]!
+    getUserById(userId: ID!): User!
   }
 `;

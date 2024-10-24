@@ -1,17 +1,15 @@
-import { UserTable } from "@app/models/user.model";
+import { UserDBService } from "@app/services";
 
 export const userResolvers = {
   Query: {
     users: async () => {
-      return await UserTable.find();
+      return await UserDBService.getAllUsers();
     },
     userNames: async () => {
-      try {
-        const users = await UserTable.find();
-        return users.map((user) => user.name);
-      } catch (error) {
-        throw new Error("Could not fetch user names");
-      }
+      return await UserDBService.getUserNames();
+    },
+    getUserById: async (_: any, { userId }: any) => {
+      return await UserDBService.getUserById(userId);
     },
   },
 };

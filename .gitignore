@@ -3,4 +3,3 @@ src/.DS_Store
 firestore.config.local.json
 firestore.admin.config.json
 .DS_Store
-.env
